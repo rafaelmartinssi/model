@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-br" 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Gestão Frota</title>
+        
+        <!-- Icon favicon -->
+		<link rel="shortcut icon" href="/images/favicon.ico">
+		<!-- Bootstrap Css -->
+		<link href="/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+		<!-- Datatable Css -->
+		<link href="/css/dataTables.bootstrap5.min.css" rel="stylesheet" /> 
+		<!-- Icons Css -->
+		<link href="/css/icons.min.css" rel="stylesheet" type="text/css" />
+		<!-- App Css-->
+		<link href="/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    </head>
+<body>
+
+	<!-- <body data-layout="horizontal"> -->
+	<!-- Begin page -->
+	<div id="layout-wrapper">
+
+		<!-- Start navbar -->
+		<header th:replace="~{fragments/navbar :: navbar}"></header>
+
+		<!--  Left Sidebar Start  -->
+		<div th:replace="~{fragments/sidenav :: sidenav}"></div>
+
+
+		<!-- Start right Content here -->		
+		<div class="main-content">
+
+			<div class="page-content">
+				<div class="container-fluid">
+
+					<!-- start page title -->
+					<div class="row">
+						<div class="col-12">
+							<div
+								class="page-title-box d-flex align-items-center justify-content-between">
+								<h4 class="mb-0">Frota</h4>
+								<div class="page-title-right">
+									<ol class="breadcrumb m-0">
+										<li class="breadcrumb-item">Frota</li>
+										<li class="breadcrumb-item">Gestão</li>
+									</ol>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- end page title -->
+
+					<!--alert success)-->
+					<div th:replace="~{fragments/alert-sucess :: alert-sucess}"></div>
+					
+					<!--alert error)-->
+					<div th:replace="~{fragments/alert-error :: alert-error}"></div>
+
+					<!-- Start Tabs & Accordions -->
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="card" id="tabs-accordions">
+								<div class="card-body">
+									<h4 class="card-title mb-4">Gestão de Frota de Veículos</h4>
+
+									<div class="row">
+										<div class="col-12">
+											<div>
+												<h5 class="font-size-14">Importante!</h5>
+												<p class="card-title-desc">Mantenha esses dados sempre
+													atualizados</p>
+
+												<!-- Nav tabs -->
+												<ul class="nav nav-tabs" role="tablist">
+													<li class="nav-item"><a class="nav-link active"
+														data-bs-toggle="tab" href="#home" role="tab"> <span
+															class="d-block d-sm-none"><i
+																class="fas fa-file-signature"></i></span> <span
+															class="d-none d-sm-block">Cadastro</span>
+													</a></li>
+													<li class="nav-item"><a class="nav-link"
+														data-bs-toggle="tab" href="#registre" role="tab"> <span
+															class="d-block d-sm-none"><i
+																class="fas fa-file-alt"></i></span> <span
+															class="d-none d-sm-block">Registros</span>
+													</a></li>
+												</ul>
+
+												<!-- Tab panes -->
+												<div
+													class="tab-content p-3 border border-top-0 rounded-bottom text-muted">
+													<div class="tab-pane active" id="home" role="tabpanel">
+
+														<!-- form -->
+														<form method="post" th:action="@{/veiculos}"
+															th:object="${veiculo}" id="formfrota">
+
+															<!-- Input Hidden-->
+															<input type="hidden" th:field="*{id}">
+
+															<div class="row">
+																<div class="col-xl-6">
+																	<div class="mb-3 row">
+																		<label for="marca" class="col-md-2 col-form-label">Marca</label>
+																		<div class="col-md-10">
+																			<input class="form-control" type="text"
+																				placeholder="Ex: FIAT, FORD" th:field="*{marca}"
+																				id="marca">
+																		</div>
+																	</div>
+																	<!-- end row -->
+																</div>
+																<!-- end col -->
+																<div class="col-xl-6">
+																	<div class="mb-3 row">
+																		<label for="modelo" class="col-md-3 col-form-label">Modelo</label>
+																		<div class="col-md-9">
+																			<input class="form-control" type="text"
+																				placeholder="Ex: UNO, PALIO"
+																				th:field="*{modelo}" id="modelo">
+																		</div>
+																	</div>
+																	<!-- end row -->
+																</div>
+																<!-- end col -->
+															</div>
+															<!-- end row -->
+															<div class="row">
+																<div class="col-xl-6">
+																	<div class="mb-3 row">
+																		<label for="placa" class="col-md-2 col-form-label">Placa</label>
+																		<div class="col-md-10">
+																			<input class="form-control" type="text"
+																				placeholder="Ex: ZZZ-0000" th:field="*{placa}"
+																				id="placa">
+																		</div>
+																	</div>
+																	<!-- end row -->
+																</div>
+																<!-- end col -->
+																<div class="col-xl-6">
+																	<div class="mb-3 row">
+																		<label for="seguranca" class="col-md-3 col-form-label">Placa
+																			de segurança</label>
+																		<div class="col-md-9">
+																			<input class="form-control" type="text"
+																				placeholder="Ex: ZZZ-0000"
+																				th:field="*{seguranca}" id="seguranca">
+																		</div>
+																	</div>
+																	<!-- end row -->
+																</div>
+																<!-- end col -->
+															</div>
+															<!-- end row -->
+
+
+															<div class="row">
+																<div class="col-xl-6">
+																	<div class="mb-3 row">
+																		<label for="tipo" class="col-md-2 col-form-label">Tipo</label>
+																		<div class="col-md-10">
+																			<select class="form-control" th:field="*{tipo}"
+																				id="carreira">
+																				<option value="">Selecione ...</option>
+																				<option th:each="tipo : ${tipoVeiculoList}"
+																					th:value="${tipo}" th:text="${tipo}">
+																			</select>
+																		</div>
+																	</div>
+																	<!-- end row -->
+																</div>
+																<!-- end col -->
+															</div>
+															<!-- end row -->
+
+															<div class="mt-4">
+																<!-- Submit button-->
+																<button class="btn btn-primary"
+																	th:if="${veiculo.id == null}" type="submit">Adicionar</button>
+																<button class="btn btn-primary"
+																	th:if="${veiculo.id != null}" type="submit">Atualizar</button>
+																<a class="btn btn-primary" th:href="@{/veiculos}"
+																	th:if="${veiculo.id != null}" type="button">Cancelar</a>
+															</div>
+
+														</form>
+														<!-- end form -->
+
+													</div>
+													<div class="tab-pane" id="registre" role="tabpanel">
+
+														<!-- table responsive start -->
+														<div class="table-responsive">
+															<!-- table start -->
+															<table id="datatable"
+																class="table table-hover table-nowrap mb-0 align-middle table-check">
+																<thead class="bg-light">
+																	<tr>
+																		<th>ID</th>
+																		<th>Marca</th>
+																		<th>Modelo</th>
+																		<th>Placa</th>
+																		<th>Placa de segurança</th>
+																		<th>Tipo</th>
+																		<th>Unidade</th>
+																		<th>Ações</th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<tr th:each="veiculo:${veiculos}">
+																		<td th:text="${veiculo.id}"></td>
+																		<td th:text="${veiculo.marca}"></td>
+																		<td th:text="${veiculo.modelo}"></td>
+																		<td th:text="${veiculo.placa}"></td>
+																		<td th:text="${veiculo.seguranca}"></td>
+																		<td th:text="${veiculo.tipo}"></td>
+																		<td th:text="${veiculo.codigo.descricao}"></td>
+																		<td><div class="dropdown">
+																				<a href="#" class="dropdown-toggle card-drop"
+																					data-bs-toggle="dropdown" aria-expanded="false">
+																					<i
+																					class="mdi mdi-dots-horizontal font-size-18 text-muted"></i>
+																				</a>
+																				<ul class="dropdown-menu dropdown-menu-end">
+																					<li><a
+																						th:href="@{/veiculos/{id}(id = ${veiculo.id})}"
+																						class="dropdown-item"> <i
+																							class="mdi mdi-pencil font-size-16 text-success me-1"></i>
+																							Edit
+																					</a></li>
+																					<li><a class="dropdown-item" type="button"
+																						data-bs-toggle="modal"
+																						data-bs-target="#exampleModal"
+																						th:attr="data-codigo=${veiculo.id},data-descricao=${veiculo.placa},data-acao='/veiculos'">
+																							<i
+																							class="mdi mdi-trash-can font-size-16 text-danger me-1"></i>
+																							Delete
+																					</a></li>
+																				</ul>
+																			</div></td>
+																	</tr>
+																</tbody>
+															</table>
+															<!-- end table -->
+
+															<!-- modal remove start -->
+															<div
+																th:replace="~{fragments/modal-exclusao :: modal-exclusao}"></div>
+
+														</div>
+														<!-- end table responsive -->
+
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- end Tabs & Accordions -->
+
+				</div>
+				<!-- container-fluid -->
+			</div>
+			<!-- End Page-content -->
+
+			<!--FOOTER INFERIOR)-->
+			<footer th:replace="~{fragments/footer :: footer}"></footer>
+
+		</div>
+		<!-- end main content-->
+
+	</div>
+	<!-- END layout-wrapper -->
+	
+	<!-- Right bar overlay-->
+    <div class="rightbar-overlay"></div>
+
+	<!-- JQUERY -->
+	<script type="text/javascript" src="/js/jquery-3.5.1.js"></script>
+	<script type="text/javascript" src="/js/jquery.validate.min.js"></script> 
+    
+    <!-- JAVASCRIPT DATATABLE--> 
+    <script type="text/javascript" src="/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="/js/dataTables.bootstrap5.min.js"></script>
+    
+    <!--MY JAVASCRIPT--> 
+    <script type="text/javascript" src="/js/scripts.js"></script>
+    <script type="text/javascript" src="/js/validate.js"></script>
+    
+    <!-- JAVASCRIPT TEMPLATE-->
+	<script src="/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/libs/simplebar/simplebar.min.js"></script>
+	<script src="/libs/feather-icons/feather.min.js"></script>
+	<script src="/js/app.js"></script>
+</body>
+</html>

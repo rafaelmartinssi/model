@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br" 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <!-- Bootstrap Css -->
+        <link href="/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    </head>
+<body>
+
+	<footer th:fragment="navbar" class="footer">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-6">
+					<script>
+						document.write(new Date().getFullYear())
+					</script>
+					&copy; 1º Departamento - BH.
+				</div>
+				<div class="col-sm-6">
+					<div class="text-sm-end d-none d-sm-block">
+						<a href="#" target="_blank" class="text-reset">Política de Uso</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- JAVASCRIPT -->
+        <script src="/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/libs/simplebar/simplebar.min.js"></script>
+        <script src="/libs/feather-icons/feather.min.js"></script>
+
+        <script src="/js/app.js"></script>
+</body>
+</html>

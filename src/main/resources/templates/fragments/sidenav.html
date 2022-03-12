@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br" 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <!-- Bootstrap Css -->
+        <link href="/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    </head>
+<body>
+            <!-- Left Sidebar Start -->
+            <div  th:fragment="sidenav" class="vertical-menu">
+
+                <!-- LOGO -->
+                <div class="navbar-brand-box">
+                    <a th:href="@{/}" class="logo logo-dark">
+                        <span class="logo-sm">
+                            <img src="#" alt="" height="22">
+                        </span>
+                        <span class="logo-lg">
+                            <img src="#" alt="" height="22">
+                        </span>
+                    </a>
+                </div>
+				
+
+                <button type="button" class="btn btn-sm px-3 font-size-16 header-item vertical-menu-btn">
+                    <i class="fas fa-plus"></i>
+                </button>
+				
+				
+                <div data-simplebar class="sidebar-menu-scroll">
+
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu">
+                        <!-- Left Menu Start -->
+                        <ul class="metismenu list-unstyled" id="side-menu">
+                            <li class="menu-title">HOME</li>
+
+                            <li>
+                                <a th:href="@{/}">
+                                    <i class="icon nav-icon" data-feather="home"></i>
+                                    <span class="menu-item">Início</span>
+                                </a>
+                            </li>
+
+                            <li class="menu-title">FROTA</li>
+
+                            <li>
+                                <a sec:authorize="hasRole('ROLE_CADASTRO_FROTA')"
+                                    th:href="@{/veiculos}">
+                                    <i class="icon nav-icon" data-feather="truck"></i>
+                                    <span class="menu-item">Gestão de Frota</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a sec:authorize="hasRole('ROLE_RELATORIO_FROTA')"
+                                    th:href="@{/veiculos/registro}">
+                                    <i class="icon nav-icon" data-feather="truck"></i>
+                                    <span class="menu-item">Relatórios de Frota</span>
+                                </a>
+                            </li>
+
+                            <li class="menu-title">SERVIDORES</li>
+
+                            <li>
+                                <a  sec:authorize="hasRole('ROLE_CADASTRO_PESSOAL')" 
+                                    th:href="@{/servidores}">
+                                    <i class="icon nav-icon" data-feather="users"></i>
+                                    <span class="menu-item">Gestão de Servidores</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a  sec:authorize="hasRole('ROLE_RELATORIO_PESSOAL')"
+                                    th:href="@{/servidores/registro}">
+                                    <i class="icon nav-icon" data-feather="users"></i>
+                                    <span class="menu-item">Relátorios de Servidores</span>
+                                </a>
+                            </li>
+                            
+                            <li class="menu-title">CATÁLOGO</li>
+
+                            <li>
+                                <a  sec:authorize="hasRole('ROLE_CADASTRO_USUARIO')" 
+                                    th:href="@{/unidades}">
+                                    <i class="icon nav-icon" data-feather="monitor"></i>
+                                    <span class="menu-item">Gestão de Unidades</span>
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a  th:href="@{/unidades/catalogo}">
+                                    <i class="icon nav-icon" data-feather="map"></i>
+                                    <span class="menu-item">Catálogo</span>
+                                </a>
+                            </li>
+
+                            <li class="menu-title">USUÁRIOS</li>
+
+                            <li>
+                                <a  sec:authorize="hasRole('ROLE_CADASTRO_USUARIO')"
+                                    th:href="@{/usuarios}">
+                                    <i class="icon nav-icon" data-feather="user"></i>
+                                    <span class="menu-item">Cadastro de Usuário</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a  sec:authorize="hasRole('ROLE_CADASTRO_USUARIO')"
+                                    th:href="@{/usuarios/registros}">
+                                    <i class="icon nav-icon" data-feather="users"></i>
+                                    <span class="menu-item">Registros de Usuários</span>
+                                </a>
+                            </li>
+                            
+                            <li class="menu-title">ESTATÍSTICAS</li>
+
+                            <li>
+                                <a 
+                                    th:href="@{/geral}">
+                                    <i class="icon nav-icon" data-feather="bar-chart"></i>
+                                    <span class="menu-item">Quantitativos Gerais</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- Sidebar -->
+                </div>
+            </div>
+            <!-- Left Sidebar End -->
+
+		<!-- JAVASCRIPT -->
+        <script src="/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/libs/simplebar/simplebar.min.js"></script>
+        <script src="/libs/feather-icons/feather.min.js"></script>
+
+        <script src="/js/app.js"></script>
+</body>
+</html>

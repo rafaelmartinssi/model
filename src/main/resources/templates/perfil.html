@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br" 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Meu Perfil</title>
+        
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="/images/favicon.ico">
+        <!-- Bootstrap Css -->
+        <link href="/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    </head>
+<body>
+
+	<!-- <body data-layout="horizontal"> -->
+
+	<!-- Begin page -->
+	<div id="layout-wrapper">
+
+		<!-- Start Navbar-->
+		<header th:replace="~{fragments/navbar :: navbar}"></header>
+
+		<!-- Left Sidebar Start -->
+		<div th:replace="~{fragments/sidenav :: sidenav}"></div>
+
+		<!-- Start right Content here -->
+		<div class="main-content">
+
+			<div class="page-content">
+				<div class="container-fluid">
+
+					<!-- start page title -->
+					<div class="row">
+						<div class="col-12">
+							<div
+								class="page-title-box d-flex align-items-center justify-content-between">
+								<h4 class="mb-0">Informações de Cadastro</h4>
+								<div class="page-title-right">
+									<ol class="breadcrumb m-0">
+										<li class="breadcrumb-item">Usuário</li>
+										<li class="breadcrumb-item">Perfil</li>
+									</ol>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- end page title -->
+					
+					<!--alert success)-->
+					<div th:replace="~{fragments/alert-sucess :: alert-sucess}"></div>
+
+					<div class="row">
+						<div class="col-xl-6">
+							<div class="card">
+								<div
+									class="card-header justify-content-between d-flex align-items-center">
+									<h4 class="card-title">Meu Cadastro</h4>
+								</div>
+								<!-- end card header -->
+								<div class="card-body" th:object="${usuario}">
+									<div class="row">
+										<div class="col-sm-3 text-truncate"><strong>Nome:</strong></div>
+										<div class="col">
+											<label th:text="${usuario.nome}"> </label>
+										</div>
+									</div>
+									<!-- end row -->
+									<div class="row">
+										<div class="col-sm-3 text-truncate"><strong>Sobrenome:</strong></div>
+										<div class="col">
+											<label th:text="${usuario.sobrenome}"> </label>
+										</div>
+									</div>
+									<!-- end row -->
+									<div class="row">
+										<div class="col-sm-3 text-truncate"><strong>Masp:</strong></div>
+										<div class="col">
+											<label th:text="${usuario.masp}"> </label>
+										</div>
+									</div>
+									<!-- end row -->
+									<div class="row">
+										<div class="col-sm-3 text-truncate"><strong>Carreira:</strong></div>
+										<div class="col">
+											<label th:text="${usuario.carreira.descricao}"> </label>
+										</div>
+									</div>
+									<!-- end row -->
+									<div class="row">
+										<div class="col-sm-3 text-truncate"><strong>Unidade:</strong></div>
+										<div class="col">
+											<label th:text="${usuario.codigo.descricao}"> </label>
+										</div>
+									</div>
+									<!-- end row -->
+								</div>
+								<!-- end card body -->
+							</div>
+							<!-- end card -->
+						</div>
+						<!-- end col -->
+
+						<div class="col-xl-6">
+							<div class="card">
+								<div class="card-header justify-content-between d-flex align-items-center">
+									<h4 class="card-title">Alterar Senha</h4>
+								</div>
+								<!-- end card header -->
+								<div class="card-body">
+
+									<div class="text-danger mb-2"
+										th:if="${!#strings.isEmpty(senhaerror)}">
+										<span th:text="${senhaerror}"></span>
+									</div>
+									
+									<form action="atualizarSenha" method="post" id="formsenha">
+										<div class="row mb-4">
+											<label class="col-sm-4 col-form-label" for="currentPassword">Senha
+												atual</label>
+											<div class="col-sm-8">
+												<input class="form-control" name="currentPassword"
+													id="currentPassword" type="password"
+													placeholder="Entre com a senha atual" />
+											</div>
+										</div>
+										<!-- end row -->
+										<div class="row mb-4">
+											<label class="col-sm-4 col-form-label" for="newPassword">Nova
+												senha</label>
+											<div class="col-sm-8">
+												<input class="form-control" name="newPassword"
+													id="newPassword" type="password"
+													placeholder="Entre com a nova senha" />
+											</div>
+										</div>
+										<!-- end row -->
+										<div class="row mb-4">
+											<label class="col-sm-4 col-form-label" for="confirmPassword">Confirme
+												nova senha</label>
+											<div class="col-sm-8">
+												<input class="form-control" name="confirmPassword"
+													id="confirmPassword" type="password"
+													placeholder="Confirme a nova senha" />
+											</div>
+										</div>
+										<!-- end row -->
+										<div class="row justify-content-end">
+											<div class="col-sm-8">
+												<button class="btn btn-primary" type="submit">Salvar</button>
+											</div>
+											<!-- end col -->
+										</div>
+										<!-- end row -->
+									</form>
+									<!-- end form -->
+								</div>
+							</div>
+							<!-- end card -->
+						</div>
+						<!-- end col -->
+					</div>
+					<!-- end row -->
+					<!-- End Form Layout -->
+
+				</div>
+				<!-- container-fluid -->
+			</div>
+			<!-- End Page-content -->
+
+			<!--FOOTER INFERIOR)-->
+			<footer th:replace="~{fragments/footer :: footer}"></footer>
+
+		</div>
+		<!-- end main content-->
+
+	</div>
+	<!-- END layout-wrapper -->
+	
+	<!-- Right bar overlay-->
+    <div class="rightbar-overlay"></div>
+    
+    <!-- JQUERY -->
+	<script type="text/javascript" src="/js/jquery-3.5.1.js"></script>
+	<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+    
+    <!--MY JAVASCRIPT--> 
+    <script type="text/javascript" src="/js/scripts.js"></script>
+    <script type="text/javascript" src="/js/validate.js"></script>
+
+	<!-- JAVASCRIPT -->
+    <script src="/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/libs/simplebar/simplebar.min.js"></script>
+    <script src="/libs/feather-icons/feather.min.js"></script>
+    
+    <script src="/js/app.js"></script>
+</body>
+</html>
